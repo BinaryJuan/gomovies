@@ -18,12 +18,14 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/discover' element={<Search />} />
-          <Route path='/discover/details/:id' element={<Details backUrl='/discover' />} />
+          <Route path='/discover/details/:id' element={<Details />} />
           <Route path='/genres' element={<Genres />} />
           <Route path='/shows' element={<Shows />} />
           <Route path='/about' element={<About />} />
           <Route path='/genres/details/:id' element={<Details backUrl='/genres' />} />
-          <Route path='/shows/details/:id' element={<ShowDetails backUrl='/shows' />} />
+          <Route path='/shows/details/:id' element={<ShowDetails />} />
+          <Route path='/discover/page/:page' element={<Search />} />
+          <Route path='/shows/page/:page' element={<Shows />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

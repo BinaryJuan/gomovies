@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Loading from './Loading'
 
 const Search = () => {
+    const { page } = useParams()
     const [searchMovies, setSearchMovies] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(parseInt(page) || 1)
     const [totalPages, setTotalPages] = useState(1)
     const [isLoading, setIsLoading] = useState(true)
     const imageBaseUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
@@ -49,9 +50,10 @@ const Search = () => {
             }
         }
     }
-
+    
     const goToPage = (page) => {
         setCurrentPage(page)
+        window.open(`/discover/page/${page}`, '_self')
     }
 
     useEffect(() => {
@@ -62,18 +64,20 @@ const Search = () => {
         <div className='trendingContainer'>
             <h2>Discover movies</h2>
             <input type='text' id='searchMovie' placeholder='Search...' onChange={getSearch} />
-            {isLoading ? <Loading /> : null}
             <div className='pagination'>
-                <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}><img src='/back.svg' alt='Previous' /></button>
+                <Link to={currentPage === 1 ? null : `/discover/page/${currentPage - 1}`} onClick={() => currentPage === 1 ? null : setCurrentPage(currentPage - 1)}>
+                    <img src='/back.svg' alt='Previous' />
+                </Link>
                 {currentPage >= 4 ? <p className='pageNumber' onClick={() => goToPage(1)}>1...</p> : null}
                 {currentPage !== 1 ? <p className='pageNumber' onClick={() => goToPage(currentPage - 1)}>{currentPage - 1}</p> : null}
                 <p className='current'>{currentPage}</p>
                 {currentPage !== totalPages ? <p className='pageNumber' onClick={() => goToPage(currentPage + 1)}>{currentPage + 1}</p> : null}
-                {currentPage >= totalPages - 5 ? null : null}
-                <p className='pageNumber' onClick={() => goToPage(totalPages)}>{currentPage === 1000 ? null : `...${totalPages}`}</p>
-                <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}><img src='/right.svg' alt='Next' /></button>
+                {totalPages - 2 >= currentPage ? <p className='pageNumber' onClick={() => goToPage(totalPages)}>...{totalPages}</p> : null}
+                <Link to={currentPage === totalPages ? null : `/discover/page/${currentPage + 1}`} onClick={() => currentPage === 1000 ? null : setCurrentPage(currentPage + 1)}>
+                    <img src='/right.svg' alt='Next' />
+                </Link>
             </div>
-            {searchMovies.length === 0 ? <h2>No movies found</h2> : null}
+            {searchMovies.length === 0 ? <h2>No TV shows found</h2> : isLoading ? <Loading /> : null}
             <div className='trending'>
                 {searchMovies.map((movie) => {
                     return (
@@ -91,14 +95,17 @@ const Search = () => {
                 })}
             </div>
             <div className='pagination'>
-                <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}><img src='/back.svg' alt='Previous' /></button>
+                <Link to={currentPage === 1 ? null : `/discover/page/${currentPage - 1}`} onClick={() => currentPage === 1 ? null : setCurrentPage(currentPage - 1)}>
+                    <img src='/back.svg' alt='Previous' />
+                </Link>
                 {currentPage >= 4 ? <p className='pageNumber' onClick={() => goToPage(1)}>1...</p> : null}
                 {currentPage !== 1 ? <p className='pageNumber' onClick={() => goToPage(currentPage - 1)}>{currentPage - 1}</p> : null}
                 <p className='current'>{currentPage}</p>
                 {currentPage !== totalPages ? <p className='pageNumber' onClick={() => goToPage(currentPage + 1)}>{currentPage + 1}</p> : null}
-                {currentPage >= totalPages - 5 ? null : null}
-                <p className='pageNumber' onClick={() => goToPage(totalPages)}>{currentPage === 1000 ? null : `...${totalPages}`}</p>
-                <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}><img src='/right.svg' alt='Next' /></button>
+                {totalPages - 2 >= currentPage ? <p className='pageNumber' onClick={() => goToPage(totalPages)}>...{totalPages}</p> : null}
+                <Link to={currentPage === totalPages ? null : `/discover/page/${currentPage + 1}`} onClick={() => currentPage === 1000 ? null : setCurrentPage(currentPage + 1)}>
+                    <img src='/right.svg' alt='Next' />
+                </Link>
             </div>
         </div>
     )

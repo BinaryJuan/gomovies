@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loading from './Loading'
 
-const Details = ({backUrl}) => {
+const Details = () => {
     const { id } = useParams()
+    const navigate = useNavigate()
     const [movieDetails, setMovieDetails] = useState({})
     const [cast, setCast] = useState([])
     
@@ -70,10 +71,10 @@ const Details = ({backUrl}) => {
                         {movieDetails.status === 'Released' ? <div className='circleGreen'></div> : <div className='circleRed'></div>}
                         <div>{movieDetails.status}</div>
                     </div>
-                    <Link className='backToTrending' to={backUrl}>
+                    <button className='backToTrending' onClick={() => navigate(-1)}>
                         <img src='/back.svg' alt='Go back' />
                         <div>Go back</div>
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

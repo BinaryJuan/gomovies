@@ -422,9 +422,11 @@ body {
   width: max-content;
   margin-top: 30px;
   border: 1px solid #e7b54f;
+  background-color: transparent;
   border-radius: .4rem;
   padding: 10px 20px 10px 0; 
   transition: all .2s;
+  cursor: pointer;
 }
 
 .backToTrending:hover img {
@@ -614,19 +616,22 @@ body {
   font-size: 1.6rem;
 }
 
-.pagination button {
+.pagination a {
   border: 1px solid #ecaf34;
   background-color: #ecaf34;
   cursor: pointer;
   font-size: 1.5rem;
   border-radius: .4rem;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
   color: white;
   margin: 0 10px;
 }
 
 .pagination img {
   width: 25px;
-  height: 20px;
+  height: 25px;
 }
 
 .current {
