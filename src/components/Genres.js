@@ -83,7 +83,6 @@ const Genres = () => {
                                 <div className='trendingMovieDescription'>
                                     <h3>{movie.title}</h3>
                                     <p className='rdate'>{movie.release_date}</p>
-                                    <p className='overview'>{movie.overview}</p>
                                 </div>
                             </div>
                         </Link>

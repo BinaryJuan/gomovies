@@ -45,7 +45,7 @@ const ShowDetails = () => {
         <div className='movieDetails'>
             {showDetails ? null : <Loading />}
             <div className='details'>
-                <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${showDetails.backdrop_path}`} alt={showDetails.title} />
+                <img className='detailsImage' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${showDetails.backdrop_path}`} alt={showDetails.title} />
                 <div className='information'>
                     <h2>{showDetails.name} <span className='movieDuration'>({showDetails.number_of_seasons} {showDetails.number_of_seasons > 1 ? 'seasons' : 'season'}, {showDetails.number_of_episodes} {showDetails.number_of_episodes > 1 ? 'episodes' : 'episode'})</span></h2>
                     <p className='rdate'>{showDetails.first_air_date} | {showDetails.last_air_date}</p>

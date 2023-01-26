@@ -88,7 +88,6 @@ const Shows = () => {
                                     <div className='trendingMovieDescription'>
                                         <h3>{show.name}</h3>
                                         <p className='rdate'>{show.first_air_date}</p>
-                                        <p className='overview'>{show.overview}</p>
                                     </div>
                                 </div>
                             </Link>

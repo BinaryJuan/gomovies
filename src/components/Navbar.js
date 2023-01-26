@@ -17,7 +17,7 @@ const Navbar = () => {
                     <img src='/home.svg' alt='Home' />
                     <div>Home</div>
                 </NavLink>
-                <NavLink to='/discover/page/1' className={({isActive}) => isActive ? 'navbarSection activeNavSection' : 'navbarSection'}>
+                <NavLink to='/discover' className={({isActive}) => isActive ? 'navbarSection activeNavSection' : 'navbarSection'}>
                     <img src='/discover.svg' alt='Discover' />
                     <div>Discover</div>
                 </NavLink>
@@ -25,7 +25,7 @@ const Navbar = () => {
                     <img src='/genres.svg' alt='Genres' />
                     <div>Genres</div>
                 </NavLink>
-                <NavLink to='/shows/page/1' className={({isActive}) => isActive ? 'navbarSection activeNavSection' : 'navbarSection'}>
+                <NavLink to='/shows' className={({isActive}) => isActive ? 'navbarSection activeNavSection' : 'navbarSection'}>
                     <img src='/shows.svg' alt='Shows' />
                     <div>TV shows</div>
                 </NavLink>

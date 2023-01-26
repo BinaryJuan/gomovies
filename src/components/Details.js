@@ -46,7 +46,7 @@ const Details = () => {
         <div className='movieDetails'>
             {movieDetails ? null : <Loading />}
             <div className='details'>
-                <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movieDetails.backdrop_path}`} alt={movieDetails.title} />
+                <img className='detailsImage' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movieDetails.backdrop_path}`} alt={movieDetails.title} />
                 <div className='information'>
                     <h2>{movieDetails.title} <span className='movieDuration'>({movieDetails.runtime} mins)</span></h2>
                     <p className='rdate'>{movieDetails.release_date}</p>

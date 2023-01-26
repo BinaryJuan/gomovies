@@ -11,6 +11,33 @@ body {
   scroll-behavior: smooth;
 }
 
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 40px;
+  z-index: 99;
+}
+
+.aboutSpan {
+  color: #e7b54f;
+}
+
+.hamToggle {
+  background-color: #151515;
+  border: none;
+  padding: 5px;
+  position: fixed;
+  display: none;
+  top: 0;
+  z-index: 99;
+  opacity: .8;
+}
+
+.hamToggle img {
+  width: 80px;
+  height: 30px;
+}
+
 .imageBackground {
   display: flex;
   flex-direction: column;
@@ -27,6 +54,12 @@ body {
   max-width: 400px;
   height: auto;
   border-radius: .2rem;
+}
+
+.homeContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: calc(270px + 20%);
 }
 
 .movieContainer {
@@ -46,7 +79,6 @@ body {
 .options {
   display: flex;
   gap: 30px;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -68,6 +100,7 @@ body {
   cursor: pointer;
   border-radius: .2rem;
   transition: all .5s;
+  max-width: 300px;
 }
 
 .options .optionButton:hover {
@@ -390,6 +423,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   margin-top: 30px;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -632,6 +666,7 @@ body {
 .pagination img {
   width: 25px;
   height: 25px;
+  user-select: none;
 }
 
 .current {
@@ -651,5 +686,289 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1250px) {
+  .movieDetails {
+    margin-left: 30%;
+  }
+
+  .detailsImage {
+    width: 350px !important;
+  }
+
+  .details .detailOverview {
+    width: 90%;
+    font-size: .9rem;
+  }
+
+  .cast {
+    font-size: .8rem;
+    width: 90%;
+  }
+
+  .voteAvg {
+    font-size: .9rem;
+  }
+
+  .budget {
+    font-size: .9rem;
+  }
+
+  .genres {
+    width: 90%;
+  }
+
+  .genre {
+    font-size: .8rem;
+  }
+}
+
+@media(max-width: 1000px) {
+  .homeContainer {
+    margin-left: calc(270px + 5%);
+    padding-bottom: 50px;
+  }
+
+  .loadingContainer {
+    margin-left: 30%;
+  }
+
+  .aboutContainer {
+    margin-left: calc(270px + 1%);
+    margin-top: 20px;
+  }
+
+  .details {
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+  }
+
+  .information {
+    margin-left: 0;
+  }
+
+  .detailsImage {
+    margin-top: 30px;
+  }
+
+  .movieDetails {
+    margin-top: 30px;
+    margin-left: 35%;
+  }
+}
+
+@media(max-width: 800px) {
+  .homeContainer {
+    margin-left: calc(270px + 1%);
+    padding-bottom: 50px;
+  }
+
+  .selectsContainer {
+    flex-direction: column;
+  }
+
+  .celebImage {
+    max-width: 280px;
+  }
+
+  .imageBackground {
+    padding: 10px;
+  }
+
+  .options .optionButton {
+    font-size: .9rem;
+    width: 100%;
+  }
+
+  .retryButton {
+    padding: 10px 15px;
+  }
+
+  .retryButton img {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 650px) {
+  .homeContainer {
+    margin-left: 0;
+    padding: 0 10px 50px 10px;
+    justify-content: center;
+  }
+
+  .loadingContainer {
+    margin-left: 0;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .hamToggle {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: block;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    background-color: #141414;
+    opacity: .8;
+    height: 100vh;
+  }
+
+  .mobileMenu h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding: 0 5px;
+    text-align: center;
+  }
+
+  .logoLink {
+    display: none;
+  }
+
+  .divLine {
+    display: none;
+  }
+
+  .sectionsContainer {
+    align-items: center;
+  }
+
+  .navbarSection {
+    width: max-content;
+    justify-content: center;
+    padding: 5px 10px;
+  }
+
+  .navbarSection div {
+    display: none;
+  }
+
+  .navbarSection img {
+    margin-right: 0;
+  }
+
+  .socialMediaContainer {
+    display: none;
+  }
+
+  .copyright {
+    display: none;
+  }
+
+  .optionsContainer {
+    width: 100%
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .optionButton {
+    width: 100%;
+  }
+
+  .trendingContainer {
+    margin-left: 0;
+  }
+
+  .aboutContainer {
+    margin-left: 15%;
+  }
+
+  .movieDetails {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .details {
+    width: 80%;
+  }
+
+  .backToTrending {
+    padding: 7px 15px 7px 0;
+  }
+
+  .aboutContainer p {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .homeContainer {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 470px) {
+  .celebImage {
+    width: 180px;
+  }
+
+  .movieContainer h2 {
+    font-size: 1.2rem;
+  }
+
+  .options {
+    width: 100%;
+  }
+
+  .options .optionButton {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .loadingContainer h2 {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 420px) {
+    .detailsImage {
+      width: 250px !important;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .trendingMovie {
+      height: auto;
+    }
+  
+    .trendingMovie img {
+      width: 220px;
+    }
+
+    .trendingMovieDescription {
+      width: auto;
+    }
+
+    .trendingMovie h3 {
+      font-size: 1rem;
+      height: auto;
+      white-space: normal;
+    }
+
+    .overview {
+      font-size: .8rem;
+      width: 70%;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .detailsImage {
+      width: 200px !important;
+    }
   }
 }

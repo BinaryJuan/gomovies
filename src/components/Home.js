@@ -34,27 +34,45 @@ const Home = () => {
         setRandomMovies(randomMovies)
     }
 
-    const getMovie = async () => {
-    while (true) {
-        const options = {
-            method: 'GET',
-            url: `https://api.themoviedb.org/3/movie/${randomId(minId, maxId)}?api_key=${process.env.REACT_APP_API_KEY}&with_original_language=en`
-        }
-        try {
-            const response = await axios.request(options)
-            if (response.data.backdrop_path !== null && response.data.adult === false) {
-                setMovie({
-                    url: imageBaseUrl + response.data.backdrop_path,
-                    caption: response.data.title
-                })
-                setLoading(false)
-                const correctMovie = {title: response.data.title, correct: true, id: response.data.id}
-                returnRandomButtons(correctMovie)
-                break
-            }
-        } catch (error) {
-        }
+    const getRandomPage = async () => {
+        // const options = {
+        //     method: 'GET',
+        //     url: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en`
+        // }
+        // try {
+        //     const response = await axios.request(options)
+        //     const total = response.data.total_pages
+        //     return Math.floor(Math.random() * (1000 - 1 + 1) + 1)
+        // } catch (error) {
+        //     console.log(error)
+        // }
+        return Math.floor(Math.random() * (5000 - 1 + 1) + 1)
     }
+
+    const getMovie = async () => {
+        while (true) {
+            const randomPageNumber = await getRandomPage()
+            const options = {
+                method: 'GET',
+                url: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en&page=${randomPageNumber}`
+            }
+            try {
+                const response = await axios.request(options)
+                const randomMovie = response.data.results[Math.floor(Math.random() * response.data.results.length)]
+                if (randomMovie.backdrop_path !== null && randomMovie.adult === false) {
+                    setMovie({
+                        url: imageBaseUrl + randomMovie.backdrop_path,
+                        caption: randomMovie.title
+                    })
+                    setLoading(false)
+                    const correctMovie = {title: randomMovie.title, correct: true, id: randomMovie.id}
+                    returnRandomButtons(correctMovie)
+                    break
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 
     const getMovieObject = async () => {
@@ -69,6 +87,7 @@ const Home = () => {
                     return {title: response.data.title, correct: false, id: response.data.id}
                 }
             } catch (error) {
+                console.log(error)
             }
         }
     }
@@ -87,15 +106,15 @@ const Home = () => {
     }
 
     const revealAnswer = () => {
-    const correctMovie = randomMovies.find((movie) => movie.correct)
-    const buttons = document.querySelectorAll('.optionButton')
-    buttons.forEach((button) => {
-        if (button.innerText === correctMovie.title) {
-        button.style.backgroundColor = 'green'
-        } else {
-        button.style.backgroundColor = 'red'
-        }
-    })
+        const correctMovie = randomMovies.find((movie) => movie.correct)
+        const buttons = document.querySelectorAll('.optionButton')
+        buttons.forEach((button) => {
+            if (button.innerText === correctMovie.title) {
+                button.style.backgroundColor = 'green'
+            } else {
+                button.style.backgroundColor = 'red'
+            }
+        })
     }
 
     const saveScore = () => {
@@ -115,25 +134,25 @@ const Home = () => {
     }
 
     if (!loading) {
-    return (
-        <div>
-            <div className='movieContainer'>
-                <h2>Guess the movie...</h2>
-                <div className='imageBackground'>
-                    <img className='celebImage' src={movie.url} alt={movie.caption} />
-                </div>
-                <div className='optionsContainer'>
-                    <div className='options'>
-                    {randomMovies.length !== 3 ? <LoadingButtons /> : null}
-                    {randomMovies.map((movie) => {
-                        return <button key={movie.id} className='optionButton' onClick={() => checkAnswer(movie)}>{movie.title}</button>
-                    })}
+        return (
+            <div className='homeContainer'>
+                <div className='movieContainer'>
+                    <h2>Guess the movie...</h2>
+                    <div className='imageBackground'>
+                        <img className='celebImage' src={movie.url} alt={movie.caption} />
                     </div>
-                    {randomMovies.length !== 3 ? null : <button className='retryButton' onClick={handleReload}><img src='./reload.svg' alt='Reload' /></button>}
+                    <div className='optionsContainer'>
+                        <div className='options'>
+                            {randomMovies.length !== 3 ? <LoadingButtons /> : null}
+                            {randomMovies.map((movie) => {
+                                return <button key={movie.id} className='optionButton' onClick={() => checkAnswer(movie)}>{movie.title}</button>
+                            })}
+                        </div>
+                        {randomMovies.length !== 3 ? null : <button className='retryButton' onClick={handleReload}><img src='./reload.svg' alt='Reload' /></button>}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
     } else {
         return (
             <Loading />

@@ -1,7 +1,7 @@
 const About = () => {
     return (
         <div className='aboutContainer'>
-            <h2>About gomovies</h2>
+            <h2>About <span className='aboutSpan'>go</span>movies</h2>
             <p>
                 Gomovies is an app built in React that allows you to guess the celebrity from a random picture given.
                 The objective is to guess the celebrity and get the highest score.
