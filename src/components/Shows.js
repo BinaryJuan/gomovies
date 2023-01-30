@@ -35,12 +35,20 @@ const Shows = () => {
         } else {
             const options = {
                 method: 'GET',
-                url: `https://api.themoviedb.org/3/search/tv/?api_key=${process.env.REACT_APP_API_KEY}&with_original_language=en&query=${movieToSearch}`
+                url: `https://api.themoviedb.org/3/search/tv/?api_key=${process.env.REACT_APP_API_KEY}&with_original_language=en&query=${movieToSearch}`,
+                params: {
+                    api_key: 'api-key'
+                },
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "text/plain",
+                    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+                }
             }
             try {
                 const response = await axios.request(options)
                 setShows(response.data.results)
-                console.log(response.data.results)
                 setIsLoading(false)
                 document.querySelectorAll('.pagination').forEach((pagination) => {
                     pagination.style.visibility = 'hidden'
