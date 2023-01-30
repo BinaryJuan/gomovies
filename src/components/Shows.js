@@ -40,6 +40,7 @@ const Shows = () => {
             try {
                 const response = await axios.request(options)
                 setShows(response.data.results)
+                console.log(response.data.results)
                 setIsLoading(false)
                 document.querySelectorAll('.pagination').forEach((pagination) => {
                     pagination.style.visibility = 'hidden'
