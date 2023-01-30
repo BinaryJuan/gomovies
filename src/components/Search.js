@@ -30,6 +30,7 @@ const Search = () => {
                 })
                 window.scrollTo(0, 0)
             } catch (error) {
+                setIsLoading(false)
                 console.log(error)
             }
         } else {
