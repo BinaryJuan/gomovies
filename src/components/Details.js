@@ -8,6 +8,7 @@ const Details = () => {
     const navigate = useNavigate()
     const [movieDetails, setMovieDetails] = useState({})
     const [cast, setCast] = useState([])
+    const imageBaseUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
     
     const getMovieDetails = async () => {
         const options = {
@@ -46,7 +47,7 @@ const Details = () => {
         <div className='movieDetails'>
             {movieDetails ? null : <Loading />}
             <div className='details'>
-                <img className='detailsImage' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movieDetails.backdrop_path}`} alt={movieDetails.title} />
+                {movieDetails.backdrop_path === null ? <img src='/altImage.png' alt={movieDetails.name} /> : <img className='detailsImage' src={imageBaseUrl + movieDetails.backdrop_path} alt={movieDetails.title} />}
                 <div className='information'>
                     <h2>{movieDetails.title} <span className='movieDuration'>({movieDetails.runtime} mins)</span></h2>
                     <p className='rdate'>{movieDetails.release_date}</p>
