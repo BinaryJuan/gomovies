@@ -46,7 +46,7 @@ const ShowDetails = () => {
         <div className='movieDetails'>
             {showDetails ? null : <Loading />}
             <div className='details'>
-                {showDetails.poster_path === null ? <img src='/altImage.png' alt={showDetails.name} /> : <img src={imageBaseUrl + showDetails.poster_path} alt={showDetails.name} />}
+                {showDetails.poster_path === null ? <img src='/altImage.png' alt={showDetails.name} /> : <img className='detailsImage' src={imageBaseUrl + showDetails.poster_path} alt={showDetails.name} />}
                 <div className='information'>
                     <h2>{showDetails.name} <span className='movieDuration'>({showDetails.number_of_seasons} {showDetails.number_of_seasons > 1 ? 'seasons' : 'season'}, {showDetails.number_of_episodes} {showDetails.number_of_episodes > 1 ? 'episodes' : 'episode'})</span></h2>
                     <p className='rdate'>{showDetails.first_air_date} | {showDetails.last_air_date}</p>
